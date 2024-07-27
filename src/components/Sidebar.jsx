@@ -2,7 +2,7 @@ import { ChevronLeft, Zap } from 'lucide-react';
 
 const Sidebar = () => {
   return (
-    <aside className="w-64 bg-[#252525] p-4">
+    <aside className="w-64 bg-[#252525] p-4 h-full md:h-auto">
       <div className="flex items-center mb-6">
         <ChevronLeft className="text-white mr-2" />
         <span className="text-white">Menu</span>

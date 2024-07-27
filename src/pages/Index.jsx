@@ -6,17 +6,30 @@ import ProblemList from '../components/ProblemList';
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState('Core Skills');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
     <div className="min-h-screen bg-[#1E1E1E] text-white">
       <Header />
-      <div className="flex">
-        <Sidebar />
+      <div className="flex relative">
+        <button 
+          className="md:hidden absolute top-0 left-0 m-4 z-20 text-white"
+          onClick={toggleSidebar}
+        >
+          {isSidebarOpen ? 'Close' : 'Menu'}
+        </button>
+        <div className={`${isSidebarOpen ? 'block' : 'hidden'} md:block`}>
+          <Sidebar />
+        </div>
         <main className="flex-1 p-6">
           <h1 className="text-3xl font-bold mb-6">Courses</h1>
           <CourseSection />
           <div className="mt-6">
-            <div className="flex space-x-4 mb-4">
+            <div className="flex flex-wrap space-x-2 space-y-2 md:space-x-4 md:space-y-0 mb-4">
               {['Core Skills', 'Blind 75', 'NeetCode 150', 'NeetCode All'].map((tab) => (
                 <button
                   key={tab}
@@ -30,9 +43,9 @@ const Index = () => {
               ))}
             </div>
             <div className="bg-[#252525] p-4 rounded">
-              <div className="flex justify-between items-center mb-2">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
                 <span>0 / 45</span>
-                <span className="text-sm text-gray-400">
+                <span className="text-sm text-gray-400 mt-2 md:mt-0">
                   Implement common data structures, algorithms, and design patterns.
                 </span>
               </div>
